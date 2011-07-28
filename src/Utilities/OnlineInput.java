@@ -13,6 +13,7 @@ import java.util.TimeZone;
 public class OnlineInput
 {
     private String[] SatelliteName; //Array of satellite names
+    private String[] TempSatelliteName;
     private String[] EphemerisLocation; //Arrary  of links to ephemeris files
     private String[] Co; //Array of color strings
     private boolean[] ModelCentered; //Array for model centered view booleans
@@ -64,7 +65,7 @@ public class OnlineInput
                         }
 		}
 		//seperate long strings into smaller arrays
-		SatelliteName = SatelliteNameLong.split(";");
+		TempSatelliteName = SatelliteNameLong.split(";");                
 		EphemerisLocation = EphemerisLocationLong.split(";");
 		String[] ModelCenteredArray = ModelCenteredLong.split(";");
                 ModelCentered = new boolean [ModelCenteredArray.length];
@@ -73,8 +74,26 @@ public class OnlineInput
 		{
 			ModelCentered[i] = Boolean.parseBoolean(ModelCenteredArray[i]);
 		}
+<<<<<<< HEAD
 		Co = ColorLong.split(";");    
                 
+=======
+		Co = ColorLong.split(";");
+                
+                //If there are more ephemeris files than satellite names, set names to unknown
+                SatelliteName = new String[EphemerisLocation.length];
+                for(int i = 0; i < EphemerisLocation.length; i++)
+                {
+                    if(i < TempSatelliteName.length)
+                    {
+                        SatelliteName[i] = TempSatelliteName[i];
+                    }
+                    else
+                    {
+                        SatelliteName[i] = "Unknown";
+                    }
+                }
+>>>>>>> af7357309b6f6a4dce0e2089c4d108f5edc7f7bf
 	}
 	public void removeSatellite(int location)
 	{ //remove satellite from list
