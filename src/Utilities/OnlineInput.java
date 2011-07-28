@@ -73,7 +73,8 @@ public class OnlineInput
 		{
 			ModelCentered[i] = Boolean.parseBoolean(ModelCenteredArray[i]);
 		}
-		Co = ColorLong.split(";");
+		Co = ColorLong.split(";");    
+                
 	}
 	public void removeSatellite(int location)
 	{ //remove satellite from list
