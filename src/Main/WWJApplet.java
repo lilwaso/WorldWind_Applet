@@ -809,15 +809,14 @@ public void resetButtonActionPerformed(ActionEvent e)
     statusDisplay.setText("Scenario Reset");
     //Not in real time mode
     realTime.setSelected(false);
-
+    //Non real time
+    nonRealTime = true;
     //Reset step size
-    //If there are satellites, set time to user requested time (Or if it was in real time mode)
-    if(inputSat || !nonRealTime)
+    //If there are satellites, set time to user requested time
+    if(inputSat)
     {setTime(time);}
     else //Set time to current time for no satellites
     {currentJulianDate.update2CurrentTime();} 
-    //Non real time
-    nonRealTime = true;
     //Has been reset
     reset = true;
     }
@@ -974,17 +973,10 @@ private void realTimeActionPerformed(ActionEvent evt)
         stepDisplay.setText("" + animationSimStepSeconds); //Change step size display
         statusDisplay.setText("Real Time Mode"); //Change status
         reset = false; //No longer reset
-        /* These two variables need to be set (canBePlayed and inputSat), so that even if the 
-        input scenario time was incorrect, the scenario will still play in real time mode. 
-        That way, if the real time mode displays satellites even though the input time was wrong,
-        the satellites will be animated. */
-        canBePlayed = true;
-        inputSat = true;
         if(canBePlayed)
         {//Play scenario
         animateApplet(true);
         canBePlayed = false;
-        inputSat = false;
         }
     }
     else
